@@ -50,4 +50,16 @@ public class Task {
     @NotNull
     @Enumerated(value = EnumType.STRING)
     private Status status;
+
+    public Task() {
+        this.status = Status.OPEN;
+    }
+
+    public void closeTask() {
+        this.status = Status.CLOSED;
+    }
+
+    public void reopenTask() {
+        this.status = Status.REOPENED;
+    }
 }
