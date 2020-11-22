@@ -1,0 +1,46 @@
+<div class="col-xl-8 col-lg-7">
+    <div class="newTaskForm">
+        <form th:action="@{/task/create}" th:method="post">
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="newTaskModal"
+                 role="dialog" tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                            <button aria-label="Close" class="close" data-dismiss="modal" type="button">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input class="form-control" id="id" name="id" type="hidden" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="title">Title:</label>
+                                <input class="form-control" id="title" name="title" type="text" value=""/>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Status:</label>
+                                <select class="form-control" id="status" name="status">
+                                    <option th:each="status : ${statusList}"
+                                            th:text="${status}" th:value="${status}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="content">Content:</label>
+                                <textarea class="form-control" id="content" name="content"
+                                          rows="5" value="">
+                            </textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Close</button>
+                            <input class="btn btn-primary" type="submit" value="save"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
