@@ -1,6 +1,9 @@
 package com.hendisantika.springboottaskapp.model;
 
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -25,6 +28,9 @@ import javax.validation.constraints.NotEmpty;
  */
 @Entity
 @Table(name = "tasks")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Task {
 
     @Id
