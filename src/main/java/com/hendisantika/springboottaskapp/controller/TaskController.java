@@ -114,4 +114,16 @@ public class TaskController {
         taskService.createTask(taskDetails);
         return "redirect:/";
     }
+
+    /**
+     * updates Task in DB wirh field Values from EDIT Modal
+     *
+     * @param taskDetails Task Object with field Values from EDIT Modal
+     * @return redirect to dashboard
+     */
+    @PostMapping(path = "/update")
+    public String updateTaskWithModal(Task taskDetails) {
+        taskService.updateTask(taskDetails.getId(), taskDetails);
+        return "redirect:/";
+    }
 }
