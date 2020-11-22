@@ -1,5 +1,6 @@
 package com.hendisantika.springboottaskapp.service;
 
+import com.hendisantika.springboottaskapp.model.Status;
 import com.hendisantika.springboottaskapp.model.Task;
 import com.hendisantika.springboottaskapp.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,5 +104,24 @@ public class TaskService {
         Task task = findById(taskId);
         task.reopenTask();
         taskRepository.save(task);
+    }
+
+    /**
+     * Filters all Tasks by Status
+     *
+     * @param status Enum: OPEN;CLOSED;REOPENED
+     * @return Set of Tasks
+     */
+    public Set<Task> getTasksByStatus(Status status) {
+        Set<Task> allTasks = getTasks();
+        Set<Task> filteredTasks = new HashSet<>();
+
+        for (Task t : allTasks) {
+            if (t.getStatus().equals(status)) {
+                filteredTasks.add(t);
+            }
+        }
+
+        return filteredTasks;
     }
 }
