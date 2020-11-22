@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -100,5 +101,17 @@ public class TaskController {
 
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
+    }
+
+    /**
+     * Save NEW Task in Database
+     *
+     * @param taskDetails field values
+     * @return redirect to Dashboard
+     */
+    @PostMapping(path = "/create")
+    public String createTask(Task taskDetails) {
+        taskService.createTask(taskDetails);
+        return "redirect:/";
     }
 }
