@@ -26,7 +26,6 @@ import java.util.Set;
  * Time: 05.50
  */
 @Controller
-@RequestMapping(value = {"/tasks", "/"})
 public class TaskController {
 
     @Autowired
@@ -37,7 +36,7 @@ public class TaskController {
      *
      * @return template view for all tasks
      */
-    @GetMapping
+    @GetMapping(value = {"/tasks", "/"})
     public String dashboard(Model model) {
         //display all Tasks
         Set<Task> tasks = taskService.getTasks();
@@ -57,7 +56,7 @@ public class TaskController {
      * @param taskStatus may have the values "open/closed/reopened"
      * @return Set of Tasks with specific status
      */
-    @GetMapping(value = "/{status}")
+    @GetMapping(value = "/tasks/{status}")
     public String displayByStatus(Model model, @PathVariable("status") String taskStatus) {
         if (taskStatus.equals(Status.OPEN.getTypeOfStatus())) {
             model.addAttribute("tasks", taskService.getTasksByStatus(Status.OPEN));
@@ -82,7 +81,7 @@ public class TaskController {
      * @param request helps redirect to previous site
      * @return redirection
      */
-    @GetMapping(value = "/task/{id}/{action}")
+    @GetMapping(value = "/tasks/{id}/{action}")
     public String handleStatus(@PathVariable("id") Long taskId,
                                @PathVariable("action") String action,
                                HttpServletRequest request) {
@@ -110,7 +109,7 @@ public class TaskController {
      * @param taskDetails field values
      * @return redirect to Dashboard
      */
-    @PostMapping(path = "/create")
+    @PostMapping(path = "/tasks/create")
     public String createTask(Task taskDetails) {
         taskService.createTask(taskDetails);
         return "redirect:/";
@@ -122,7 +121,7 @@ public class TaskController {
      * @param taskDetails Task Object with field Values from EDIT Modal
      * @return redirect to dashboard
      */
-    @PostMapping(path = "/update")
+    @PostMapping(path = "/tasks/update")
     public String updateTaskWithModal(Task taskDetails) {
         taskService.updateTask(taskDetails.getId(), taskDetails);
         return "redirect:/";
@@ -135,7 +134,7 @@ public class TaskController {
      * into JSON and passed back into the HttpResponse object
      * (Source: https://www.baeldung.com/spring-request-response-body)
      */
-    @GetMapping(path = "/findTask/{id}")
+    @GetMapping(path = "/tasks/findTask/{id}")
     @ResponseBody
     public Task findTask(@PathVariable("id") long taskId) {
         return taskService.findById(taskId);
@@ -147,7 +146,7 @@ public class TaskController {
      * @param taskId TaskId
      * @return redirect to Dashboard
      */
-    @GetMapping(path = "/task/{id}/delete")
+    @GetMapping(path = "/tasks/{id}/delete")
     public String deleteTask(@PathVariable("id") long taskId, HttpServletRequest request) {
         taskService.deleteTask(taskId);
         return "redirect:/";
