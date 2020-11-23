@@ -16,7 +16,7 @@
 
             <!-- Info Button for OPEN Tasks-->
             <div class="btn btn-primary btn-icon-split"
-                 th:if="${task.status == T(com.example.taskapp.model.Status).OPEN}">
+                 th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).OPEN}">
                     <span class="icon text-white-50">
                       OPEN
                     </span>
@@ -25,7 +25,7 @@
 
             <!-- Info Button for CLOSED Tasks-->
             <div class="btn btn-success btn-icon-split"
-                 th:if="${task.status == T(com.example.taskapp.model.Status).CLOSED}">
+                 th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).CLOSED}">
                     <span class="icon text-white-50">
                       CLOSED
                     </span>
@@ -34,7 +34,7 @@
 
             <!-- Info Button for REOPENED Tasks-->
             <div class="btn btn-warning btn-icon-split"
-                 th:if="${task.status == T(com.example.taskapp.model.Status).REOPENED}">
+                 th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).REOPENED}">
                     <span class="icon text-white-50">
                       REOPENED
                     </span>
@@ -52,15 +52,15 @@
                      class="dropdown-menu dropdown-menu-right shadow animated--fade-in">
                     <div class="dropdown-header">Actions:</div>
 
-                    <div th:if="${task.status == T(com.example.taskapp.model.Status).OPEN}">
+                    <div th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).OPEN}">
                         <a class="dropdown-item"
                            th:href="@{/task/{id}/{action}(id=${task.id}, action='close')}">CLOSE</a>
                     </div>
-                    <div th:if="${task.status == T(com.example.taskapp.model.Status).CLOSED}">
+                    <div th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).CLOSED}">
                         <a class="dropdown-item"
                            th:href="@{/task/{id}/{action}(id=${task.id}, action='reopen')}">REOPEN</a>
                     </div>
-                    <div th:if="${task.status == T(com.example.taskapp.model.Status).REOPENED}">
+                    <div th:if="${task.status == T(com.hendisantika.springboottaskapp.model.Status).REOPENED}">
                         <a class="dropdown-item"
                            th:href="@{/task/{id}/{action}(id=${task.id}, action='close')}">CLOSE</a>
                     </div>
